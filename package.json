@@ -1,0 +1,55 @@
+{
+  "name": "@kovalenko/nest-swagger-dto-generator",
+  "version": "0.0.0",
+  "description": "Generates NestJS DTO classes with @ApiProperty decorators and enums from swagger-typescript-api data-contracts files",
+  "author": "Kovalenko",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "nest-swagger-dto-generator": "./bin/generate-dtos.mjs"
+  },
+  "engines": {
+    "node": ">=18.x"
+  },
+  "keywords": [
+    "nestjs",
+    "nest",
+    "swagger",
+    "openapi",
+    "dto",
+    "generator",
+    "codegen",
+    "swagger-typescript-api",
+    "data-contracts",
+    "typescript"
+  ],
+  "scripts": {
+    "semantic-release": "semantic-release"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^8.0.4",
+    "@semantic-release/npm": "^9.0.1",
+    "semantic-release": "^19.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/menelai/nest-swagger-dto-generator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/menelai/nest-swagger-dto-generator/issues"
+  },
+  "files": [
+    "bin/**/*",
+    "examples/**/*",
+    "package.json",
+    "package-lock.json",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,0 +1,117 @@
+openapi: 3.0.0
+info:
+  title: Orders API
+  description: Abstract service used to demonstrate the generator
+  version: "1.0.0"
+paths:
+  /orders:
+    get:
+      operationId: getOrders
+      summary: List orders
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/OrderDto"
+components:
+  schemas:
+    OrderStatus:
+      type: string
+      x-enumNames:
+        - Pending
+        - Placed
+        - Shipped
+        - Delivered
+        - Cancelled
+      enum:
+        - pending
+        - placed
+        - shipped
+        - delivered
+        - cancelled
+    PaymentMethod:
+      type: string
+      x-enumNames:
+        - Card
+        - Cash
+        - Invoice
+      enum:
+        - card
+        - cash
+        - invoice
+    OrderItemDto:
+      type: object
+      required:
+        - id
+        - name
+        - price
+      properties:
+        id:
+          type: integer
+          description: Item id
+        name:
+          type: string
+          description: Item name
+        price:
+          type: number
+          format: float
+          description: Unit price
+        quantity:
+          type: integer
+          description: Quantity
+          example: 3
+    CustomerDto:
+      type: object
+      required:
+        - id
+        - fullName
+        - email
+      properties:
+        id:
+          type: integer
+          description: Customer id
+        fullName:
+          type: string
+          description: Full name
+        email:
+          type: string
+          format: email
+          description: Email address
+        loyaltyPoints:
+          type: integer
+          description: Loyalty points balance
+          example: 1240
+    OrderDto:
+      type: object
+      required:
+        - id
+        - total
+        - status
+        - customer
+      properties:
+        id:
+          type: integer
+          description: Order id
+        createdAt:
+          type: string
+          format: date-time
+          description: Creation timestamp
+        total:
+          type: number
+          format: float
+          description: Total amount
+        status:
+          $ref: "#/components/schemas/OrderStatus"
+        paymentMethod:
+          $ref: "#/components/schemas/PaymentMethod"
+        customer:
+          $ref: "#/components/schemas/CustomerDto"
+        items:
+          type: array
+          description: Ordered items
+          items:
+            $ref: "#/components/schemas/OrderItemDto"
