@@ -1,6 +1,6 @@
 {
   "name": "@kovalenko/nest-swagger-dto-generator",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Generates NestJS DTO classes with @ApiProperty decorators and enums from swagger-typescript-api data-contracts files",
   "author": "Kovalenko",
   "license": "MIT",
