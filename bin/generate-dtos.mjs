@@ -219,7 +219,7 @@ function apiTypeOptions(type, entityMap) {
   } else {
     opts.push(`type: () => ${ref.name}`);
   }
-  if (/\[\]\s*$/.test(type)) opts.push('isArray: true');
+  if (/\[\]\s*$/.test(type.replace(/\|\s*null\s*$/, ''))) opts.push('isArray: true');
   return opts;
 }
 
@@ -236,8 +236,10 @@ function renderDto(entity, fields, entityMap, interfaceImport) {
   const fieldLines = [];
   for (const f of fields) {
     const parsed = parseComment(f.comment);
+    const nullable = /\|\s*null\s*$/.test(f.type);
     const extraOpts = [];
     if (f.optional) extraOpts.push('required: false');
+    if (nullable) extraOpts.push('nullable: true');
     extraOpts.push(...apiTypeOptions(f.type, entityMap));
     fieldLines.push('  ' + renderApiProperty(parsed, extraOpts));
     fieldLines.push(`  ${f.name}${f.optional ? '?' : ''}: ${f.type};`);
